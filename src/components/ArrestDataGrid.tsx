@@ -18,7 +18,7 @@ const columns: GridColDef<ArrestRecord>[] = [
   {
     field: 'arrest_date_time',
     headerName: 'Arrest Date/Time',
-    width: 160,
+    width: 170,
     sortComparator: (value1, value2) => parseArrestDateTime(value1) - parseArrestDateTime(value2)
   },
   { field: 'name', headerName: 'Name', width: 130 },
@@ -28,8 +28,8 @@ const columns: GridColDef<ArrestRecord>[] = [
     width: 110,
     valueFormatter: (value: string) => value?.replace(/,/g, ', ') || ''
   },
-  { field: 'sex', headerName: 'Sex', width: 80 },
-  { field: 'age', headerName: 'Age', width: 80 },
+  { field: 'sex', headerName: 'Sex', width: 90 },
+  { field: 'age', headerName: 'Age', width: 90 },
   { field: 'offense_name', headerName: 'Offense', width: 190 },
   { field: 'offense_citation', headerName: 'Citation', width: 130 },
   { field: 'location_of_arrest', headerName: 'Location', width: 160 },
@@ -41,8 +41,8 @@ const columns: GridColDef<ArrestRecord>[] = [
     width: 140,
     sortComparator: (value1, value2) => parseArrestDateTime(value1) - parseArrestDateTime(value2)
   },
-  { field: 'release_how', headerName: 'Release Method', width: 130 },
-  { field: 'report_offense_number', headerName: 'Report #', width: 120 }
+  { field: 'release_how', headerName: 'Release Method', width: 140 },
+  { field: 'report_offense_number', headerName: 'Report #', width: 130 }
 ]
 
 interface ArrestDataGridProps {
@@ -66,7 +66,7 @@ export function ArrestDataGrid({ data, metadata }: ArrestDataGridProps) {
       density="compact"
       disableMultipleRowSelection
       disableRowSelectionOnClick
-      getRowId={(row) => row.id}
+      getRowId={row => row.id}
       ignoreDiacritics
       initialState={{
         pinnedColumns: { left: ['name'] },
@@ -81,13 +81,8 @@ export function ArrestDataGrid({ data, metadata }: ArrestDataGridProps) {
       }}
       slots={{
         footer: Footer,
-        toolbar: (props) => (
-          <Toolbar
-            {...props}
-            metadata={metadata}
-            paletteMode={mode}
-            setPaletteMode={handleSetPaletteMode}
-          />
+        toolbar: props => (
+          <Toolbar {...props} metadata={metadata} paletteMode={mode} setPaletteMode={handleSetPaletteMode} />
         )
       }}
       sx={{
