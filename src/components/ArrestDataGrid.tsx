@@ -22,14 +22,14 @@ const columns: GridColDef<ArrestRecord>[] = [
     sortComparator: (value1, value2) => parseArrestDateTime(value1) - parseArrestDateTime(value2)
   },
   { field: 'name', headerName: 'Name', width: 130 },
-  { field: 'age', headerName: 'Age', width: 80 },
-  { field: 'sex', headerName: 'Sex', width: 80 },
   {
     field: 'race',
     headerName: 'Race',
     width: 110,
     valueFormatter: (value: string) => value?.replace(/,/g, ', ') || ''
   },
+  { field: 'sex', headerName: 'Sex', width: 80 },
+  { field: 'age', headerName: 'Age', width: 80 },
   { field: 'offense_name', headerName: 'Offense', width: 190 },
   { field: 'offense_citation', headerName: 'Citation', width: 130 },
   { field: 'location_of_arrest', headerName: 'Location', width: 160 },
