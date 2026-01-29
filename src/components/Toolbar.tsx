@@ -14,6 +14,7 @@ import {
   GridToolbarQuickFilter,
   useGridApiContext
 } from '@mui/x-data-grid-pro'
+import { LastUpdatedInfo } from '@/components/LastUpdatedInfo'
 import type { Metadata } from '@/lib/types'
 
 interface ToolbarProps {
@@ -33,8 +34,6 @@ export function Toolbar({ metadata, paletteMode, setPaletteMode }: ToolbarProps)
     })
   }
 
-  const lastUpdated = new Date(metadata.lastUpdated)
-
   return (
     <GridToolbarContainer sx={{ pb: 0.5 }}>
       <Box
@@ -48,22 +47,16 @@ export function Toolbar({ metadata, paletteMode, setPaletteMode }: ToolbarProps)
       >
         <Box>
           <Typography sx={{ fontSize: { xs: 18, sm: 20 }, pl: 0.75 }} variant="h6">
-            HPD Arrest Logs
+            Honolulu Arrest Logs
           </Typography>
 
-          <Typography
+          <LastUpdatedInfo
+            metadata={metadata}
             sx={{
-              color: 'text.secondary',
-              fontSize: { xs: 11, sm: 12 },
               pl: 0.75,
               display: { xs: 'none', sm: 'block' }
             }}
-            variant="body2"
-          >
-            Last updated: {lastUpdated.toLocaleDateString()} at {lastUpdated.toLocaleTimeString()} •{' '}
-            {metadata.recordCount.toLocaleString()} records ({metadata.dateRange.from} to{' '}
-            {metadata.dateRange.to})
-          </Typography>
+          />
         </Box>
 
         <Box sx={{ alignItems: 'center', display: 'flex', gap: 0.5, pr: 0.25 }}>

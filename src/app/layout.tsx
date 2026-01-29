@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'HPD Arrest Logs',
+  title: 'Honolulu Arrest Logs',
   description: 'Recent arrest records from the Honolulu Police Department'
 }
 

@@ -1,4 +1,4 @@
-# HPD Arrest Logs
+# Honolulu Arrest Logs
 
 A searchable database of recent Honolulu Police Department arrest records. Data is extracted from PDF arrest logs published by HPD, updated every 15 minutes.
 

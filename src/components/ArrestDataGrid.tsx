@@ -80,7 +80,7 @@ export function ArrestDataGrid({ data, metadata }: ArrestDataGridProps) {
         toolbar: { showQuickFilter: true }
       }}
       slots={{
-        footer: Footer,
+        footer: props => <Footer {...props} metadata={metadata} />,
         toolbar: props => (
           <Toolbar {...props} metadata={metadata} paletteMode={mode} setPaletteMode={handleSetPaletteMode} />
         )
