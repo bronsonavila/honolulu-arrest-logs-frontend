@@ -17,7 +17,7 @@ export default function Loading() {
     >
       <CircularProgress size={48} sx={{ marginBottom: 3 }} />
 
-      <Typography color="text.secondary">Loading arrest records...</Typography>
+      <Typography color="text.secondary">Loading arrest logs...</Typography>
     </Box>
   )
 }
