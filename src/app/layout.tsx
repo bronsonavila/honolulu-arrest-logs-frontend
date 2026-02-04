@@ -14,8 +14,28 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.honoluluarrestlogs.com'),
   title: 'Honolulu Arrest Logs',
-  description: 'Recent arrest records from the Honolulu Police Department'
+  description: 'Recent arrest records from the Honolulu Police Department',
+  openGraph: {
+    title: 'Honolulu Arrest Logs',
+    description: 'Recent arrest records from the Honolulu Police Department',
+    siteName: 'Honolulu Arrest Logs',
+    locale: 'en_US',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Honolulu Arrest Logs',
+    description: 'Recent arrest records from the Honolulu Police Department'
+  },
+  robots: {
+    index: true,
+    follow: true
+  },
+  alternates: {
+    canonical: '/'
+  }
 }
 
 export default function RootLayout({
