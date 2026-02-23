@@ -16,6 +16,11 @@ export interface ArrestRecord {
   source_pdf: string
 }
 
+export interface ProcessedArrestRecord extends ArrestRecord {
+  releaseMethod: string | null
+  bail: number | null
+}
+
 export interface Metadata {
   lastUpdated: string
   recordCount: number

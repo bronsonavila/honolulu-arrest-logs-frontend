@@ -4,7 +4,7 @@ import { DataGridPro, type GridColDef } from '@mui/x-data-grid-pro'
 import { useColorMode } from '@/app/providers'
 import { Footer } from '@/components/Footer'
 import { Toolbar } from '@/components/Toolbar'
-import type { ArrestRecord, Metadata } from '@/lib/types'
+import type { Metadata, ProcessedArrestRecord } from '@/lib/types'
 
 function parseArrestDateTime(dateTimeString: string): number {
   if (!dateTimeString) return 0
@@ -14,7 +14,7 @@ function parseArrestDateTime(dateTimeString: string): number {
   return new Date(year, month - 1, day, hours, minutes).getTime()
 }
 
-const columns: GridColDef<ArrestRecord>[] = [
+const columns: GridColDef<ProcessedArrestRecord>[] = [
   {
     field: 'arrest_date_time',
     headerName: 'Arrest Date/Time',
@@ -41,12 +41,22 @@ const columns: GridColDef<ArrestRecord>[] = [
     width: 140,
     sortComparator: (value1, value2) => parseArrestDateTime(value1) - parseArrestDateTime(value2)
   },
-  { field: 'release_how', headerName: 'Release Method', width: 180 },
+  {
+    field: 'releaseMethod',
+    headerName: 'Release Method',
+    width: 180
+  },
+  {
+    field: 'bail',
+    headerName: 'Bail',
+    width: 100,
+    type: 'number'
+  },
   { field: 'report_offense_number', headerName: 'Report #', width: 130 }
 ]
 
 interface ArrestDataGridProps {
-  data: ArrestRecord[]
+  data: ProcessedArrestRecord[]
   metadata: Metadata
 }
 
