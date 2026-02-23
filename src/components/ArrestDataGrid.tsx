@@ -1,5 +1,6 @@
 'use client'
 
+import { Tooltip } from '@mui/material'
 import { DataGridPro, type GridColDef } from '@mui/x-data-grid-pro'
 import { useColorMode } from '@/app/providers'
 import { Footer } from '@/components/Footer'
@@ -12,6 +13,20 @@ function parseArrestDateTime(dateTimeString: string): number {
   const [month, day, year] = datePart.split('/').map(Number)
   const [hours, minutes] = (timePart || '00:00').split(':').map(Number)
   return new Date(year, month - 1, day, hours, minutes).getTime()
+}
+
+const releaseMethodDescriptions: Record<string, string> = {
+  RBL: 'Released; bail and/or bond posted.',
+  RNC: 'Released with no charge; no formal charges filed.',
+  RPC: 'Released; prosecution declined. Used for Family Court and Circuit Court cases reviewed by prosecutors before being sent for a court hearing.',
+  RPI: 'Released pending further investigation.',
+  ROR: 'Released on own recognizance.',
+  TOT: 'Turned over or transferred to another agency.',
+  ISC: 'Intake Service Center; refers to detainees who are transferred to OCCC after their court appearance.',
+  DCT: 'Taken to District Court for arraignment.',
+  CCT: 'Taken to Circuit Court for arraignment.',
+  FCT: 'Taken to Family Court.',
+  PVC: 'Prosecution via complaint; the person is being processed for identification purposes, and court proceedings are complete.'
 }
 
 const columns: GridColDef<ProcessedArrestRecord>[] = [
@@ -44,7 +59,23 @@ const columns: GridColDef<ProcessedArrestRecord>[] = [
   {
     field: 'releaseMethod',
     headerName: 'Release Method',
-    width: 180
+    width: 180,
+    renderCell: params => {
+      const value = params.value
+
+      if (!value) return null
+
+      const code = value.slice(0, 3).toUpperCase()
+      const description = releaseMethodDescriptions[code]
+
+      if (!description) return value
+
+      return (
+        <Tooltip title={description} placement="top">
+          <span>{value}</span>
+        </Tooltip>
+      )
+    }
   },
   {
     field: 'bail',
