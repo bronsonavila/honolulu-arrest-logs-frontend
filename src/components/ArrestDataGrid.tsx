@@ -71,7 +71,7 @@ const columns: GridColDef<ProcessedArrestRecord>[] = [
       if (!description) return value
 
       return (
-        <Tooltip title={description} placement="top">
+        <Tooltip arrow title={description} placement="top">
           <span>{value}</span>
         </Tooltip>
       )
